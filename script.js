@@ -1,107 +1,37 @@
-let div=document.createElement("div");
-div.setAttribute("class","main1");
+//DOM 
+var container = document.createElement("div");
+container.setAttribute("class","container");
+container.innerHTML =`<div class="container">
+<h1 id="title">திருக்குறள்</h1>
+<div class="row">
+    <div class="col-md-12">    
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/%E0%AE%A4%E0%AE%BF%E0%AE%B0%E0%AF%81%E0%AE%B5%E0%AE%B3%E0%AF%8D%E0%AE%B3%E0%AF%81%E0%AE%B5%E0%AE%B0%E0%AF%8D_%E0%AE%95%E0%AE%B2%E0%AF%88%E0%AE%AA%E0%AF%8D_%E0%AE%AA%E0%AE%9F%E0%AF%88%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81.jpg" alt="Thiruvalluvar image">
+        <h2 id="text">குறள்</h2>
+        <h4 id="exp"></h4>
+    </div>
+</div>    
+</div>
+<button id="button">அடுத்தது</button>`
+document.body.append(container);
 
+//javascript
+document.getElementById("button").addEventListener("click",kural);
+//initial number for api
+let count = 0;
+//fetch the data 
+async function kural(){
+        count++;
+        if(count<=1330){
+                let data = await fetch(`https://api-thirukkural.vercel.app/api?num=${count}`);
+                let data1 = await data.json();
+                
+                document.getElementById("title").innerHTML=`${data1.chap_tam}`;
+                document.getElementById("text").innerHTML=`${data1.line1} <br> ${data1.line2}`;
+                document.getElementById("exp").innerHTML=`<b>விளக்கம்:</b> ${data1.tam_exp}.`;
 
-
-let formgroup=document.createElement("div");
-formgroup.setAttribute("class","form-group");
-
-
-let input=document.createElement("input");
-input.setAttribute("type","text");
-input.setAttribute("class","form-control");
-input.setAttribute("id","main");
-input.setAttribute("placeholder","Enter the name");
-input.style.width="520px";
-
-let button=document.createElement("button");
-button.setAttribute("type","button");
-button.classList.add("btn","btn-primary","button");
-button.innerHTML="Search";
-button.style.marginLeft="200px";
-button.style.marginTop="20px";
-button.addEventListener("click",foo);
-//input text display 
-let user=document.createElement("h3");
-user.setAttribute("type","text");
-user.setAttribute("id","user");
-//heading 
-let head=document.createElement("h1");
-head.setAttribute("type","text");
-head.setAttribute("id","head");
-head.innerHTML=`Search for the nationality based on the name.`
-formgroup.append(head,user);
-//descripton
-let des=document.createElement("p");
-des.setAttribute("type","text");
-des.setAttribute("id","p");
-des.innerHTML=`Ex. try this names(michael,matthew,jane)`
-formgroup.append(head,des,user);
-
-formgroup.append(input,button);
-//table creation
-let table=document.createElement("table");
-table.setAttribute("class","table table-bordered table-dark")
-let thead=document.createElement("thead");
-let thead_tr=document.createElement("tr"); 
-let th_country=document.createElement("th");
-th_country.innerHTML="country";
-th_country.setAttribute("scope","col");
-
-let th_pro=document.createElement("th");
-th_pro.innerHTML="probability";
-th_pro.setAttribute("scope","col")
-//table body
-
-let tbody=document.createElement("tbody");
-tbody.setAttribute("id","tbody")
-
-document.body.append(div);
-div.append(formgroup);
-formgroup.append(table);
-table.append(thead);
-thead.append(thead_tr);
-thead_tr.append(th_country);
-thead_tr.append(th_pro)
-table.append(tbody);
-
-
-async function foo(){
-var count =0;
-try {
-let name=document.getElementById("main").value.toLowerCase();;
-console.log(name);
-let res= await fetch(`https://api.nationalize.io?name=${name}`);
-let result=await res.json();
-//functions
-result.country.filter(search)
-if(name==="")
-{
-  alert("Please Enter Valid Input")
-}
- function search(num,index,arr)
-{
- 
-  if(count<2)
-  {
-    let tbody_tr=document.createElement("tr");
-        tbody.append(tbody_tr);
-          let c=document.createElement("td");
-          c.setAttribute("class","text-center");
-          c.innerHTML=num.country_id;
-          tbody_tr.append(c);
-         
-          let p=document.createElement("td");
-          p.setAttribute("class","text-center");
-          p.innerHTML=num.probability;
-          tbody_tr.append(p);
-  }
-  count++
- 
-}
-}
-catch (error) {
-  console.log(error);
-}
-
+        }else{
+                document.getElementById("text").innerHTML="நன்றி!";
+                document.getElementById("title").innerHTML="திருக்குறள்";
+                document.getElementById("exp").innerHTML=""; 
+        }
 }

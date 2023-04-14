@@ -1,49 +1,59 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body{
-    background-image:url("hack-7.jpg");
-    background-repeat: no-repeat;
-    background-size:cover;
-    height: 130vh;
+    background-color:rgb(238, 231, 217);
 }
-.table
-{
-  width: 50%;
-  margin:10rem auto;
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-.form-group
-{
+
+#title{
     text-align: center;
+    font-size:50px;
+    font-weight: 600;
+    padding:10px;
+}
+img{
+    width: 200px;
+    height: 200px;
+    border: 1px solid grey;
+    margin-top: 15px;
     position: relative;
-   top:10rem
+    left: 440px;
+    
 }
-.btn-primary
-{
+#button{
+    margin-top: 20px;
+    width: 110px;
     position: relative;
-    bottom: 10px;
+    left: 990px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    background-color:#5837D0;
+    color: white;
+    padding: 3px;
 }
-#main
-{
-    margin: auto;
-    width: 50%;
-    display:inline-block;
+#button:hover{
+    color: white;
+    background-color:black;    
 }
-#user
-{
-    color:red;
-    margin: auto;
+
+#text{
     text-align: center;
-    text-transform: capitalize;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    position: relative;
+    border: 1px solid grey;
+    margin: 30px 30px 30px 40px;
+    padding: 10px;
+    color: white;
+    background-image: url(https://as1.ftcdn.net/v2/jpg/02/60/36/16/1000_F_260361682_dmdLH25SexfGRdoGHqf2FRVImoalavg4.jpg);
 }
-#head
-{
-    position: relative;
-    bottom: 120px;
-    text-transform: capitalize;
-}
-#p
-{
-    position: relative;
-    bottom: 120px;
-    text-transform: capitalize;
+#exp{
+    margin:15px;
+    padding-left: 25px;
 }
